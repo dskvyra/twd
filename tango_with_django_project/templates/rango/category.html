@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
-    <h1>{{ category_name }}</h1>
+{% extends 'rango/base.html' %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
     {% if category %}
-        {% if pages %}
-        <ul>
-            {% for page in pages %}
-            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-            {% endfor %}
-            {% if user.is_authenticated %}
-            <p>Would you like to <a href="/rango/category/{{ category_name_url }}/add_page/">ADD</a> another page to this category?</p>
+            <h1>{{ category_name }}</h1>
+            {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No pages currently in category.</strong>
             {% endif %}
-        </ul>
-        {% else %}
-            <strong>No pages currently in category.</strong>
+
             {% if user.is_authenticated %}
-            <p>Would you like to <a href="/rango/category/{{ category_name_url }}/add_page/">ADD</a> another page to this category?</p>
+                <p>Would you like to <a href="/rango/category/{{ category_name_url }}/add_page/">ADD</a> another page to this category?</p>
             {% endif %}
-        {% endif %}
     {% else %}
-        <strong>The specified category {{ category_name }} doesn't exist!</strong>
-        {% if user.is_authenticated %}
-        <p>Would you like to <a href="/rango/add_category/">ADD</a> this category by yourself?
-        {% endif %}
+            <strong>The specified category {{ category_name }} doesn't exist!</strong>
+            {% if user.is_authenticated %}
+            <p>Would you like to <a href="/rango/add_category/">ADD</a> this category by yourself?
+            {% endif %}
     {% endif %}
-</body>
-</html>
+{% endblock %}
