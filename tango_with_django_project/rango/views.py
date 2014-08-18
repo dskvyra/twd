@@ -51,6 +51,7 @@ def category(request, category_name_url):
 
     return render_to_response('rango/category.html', context_dict, context)
 
+@login_required
 def add_category(request):
     context = RequestContext(request)
 
@@ -68,6 +69,7 @@ def add_category(request):
 
     return render_to_response('rango/add_category.html', {'form': form}, context)
 
+@login_required
 def add_page(request, category_name_url):
     context = RequestContext(request)
 

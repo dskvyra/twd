@@ -43,7 +43,10 @@
         {% endif %}
 
         <a href="/rango/about/">About</a><br/>
+
+        {% if user.is_authenticated %}
         <a href="/rango/add_category/">Add a New Category</a><br />
+        {% endif %}
 
         <img src="{% static "rango.jpg" %}" alt="Rango's happy face">
     </body>
