@@ -4,7 +4,7 @@ from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
-
+from django.contrib.auth.decorators import login_required
 
 TOP_AMOUNT = 5
 
@@ -159,3 +159,7 @@ def user_login(request):
             return HttpResponse('Invalid login details supplied.')
     else:
         return render_to_response('rango/login.html', {}, context)
+
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
