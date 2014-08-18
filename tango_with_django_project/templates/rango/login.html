@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Rango</title>
+</head>
+<body>
+    <h1>Login to Rango</h1>
+
+    <form id="login_form" method="POST" action="/rango/login/">
+        {% csrf_token %}
+        <p>Username: <input type="text" name="username" value="" size="50"></p>
+        <p>Password: <input type="password" name="password" value="" size="50"></p>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
