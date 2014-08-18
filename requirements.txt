@@ -1,4 +1,5 @@
 Django==1.5.4
+Pillow==2.5.2
 argparse==1.2.1
 ipython==2.2.0
 pysqlite==2.6.3
