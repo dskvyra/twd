@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87dbb94f-5005-4441-8783-4a61ff8556ca" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/rango/forms.py" afterPath="$PROJECT_DIR$/tango_with_django_project/rango/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" afterPath="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" />
     </list>
     <ignored path="twd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,14 +25,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="forms.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tango_with_django_project/rango/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55263156" vertical-offset="0" max-vertical-offset="912">
-              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="category.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46779662" vertical-offset="0" max-vertical-offset="885">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,7 +65,6 @@
         <option value="$PROJECT_DIR$/tango_with_django_project/rango/models.py" />
         <option value="$PROJECT_DIR$/tango_with_django_project/rango/admin.py" />
         <option value="$PROJECT_DIR$/tango_with_django_project/tango_with_django_project/urls.py" />
-        <option value="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" />
         <option value="$PROJECT_DIR$/tango_with_django_project/populate_rango.py" />
         <option value="$PROJECT_DIR$/tango_with_django_project/tango_with_django_project/forms.py" />
         <option value="$PROJECT_DIR$/tango_with_django_project/rango/views.py" />
@@ -63,6 +72,7 @@
         <option value="$PROJECT_DIR$/tango_with_django_project/templates/rango/index.html" />
         <option value="$PROJECT_DIR$/tango_with_django_project/templates/rango/add_category.html" />
         <option value="$PROJECT_DIR$/tango_with_django_project/rango/forms.py" />
+        <option value="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" />
       </list>
     </option>
   </component>
@@ -591,14 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3457627" vertical-offset="0" max-vertical-offset="885">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tango_with_django_project/populate_rango.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7302632" vertical-offset="0" max-vertical-offset="1278">
@@ -609,11 +611,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tango_with_django_project/rango/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55263156" vertical-offset="0" max-vertical-offset="912">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46779662" vertical-offset="0" max-vertical-offset="885">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
