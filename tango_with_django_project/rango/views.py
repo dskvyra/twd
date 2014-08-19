@@ -60,9 +60,17 @@ def index(request):
     # return response
 
 def about(request):
+    context = RequestContext(request)
     context_dict = {'boldmessage': 'Hello, I\'m Rango and I\'m green'}
 
-    return render_to_response('rango/about.html', context_dict)
+    if request.session.has_key('visits'):
+        visits_count = request.session['visits']
+    else:
+        visits_count = 0
+
+    context_dict['visits'] = visits_count
+
+    return render_to_response('rango/about.html', context_dict, context)
 
 def category(request, category_name_url):
     context = RequestContext(request)
