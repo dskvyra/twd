@@ -95,12 +95,20 @@ def category(request, category_name_url):
                     'cat_list': cat_list,}
 
     try:
-        category = Category.objects.get(name=category_name)
+        # category = Category.objects.get(name=category_name)
+        category = Category.objects.get(name__iexact=category_name)
         pages = Page.objects.filter(category=category)
-        context_dict['pages'] = pages
         context_dict['category'] = category
+        context_dict['pages'] = pages
     except Category.DoesNotExist:
         pass
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            result_list = run_query(query)
+            context_dict['result_list'] = result_list
 
     return render_to_response('rango/category.html', context_dict, context)
 
@@ -241,18 +249,18 @@ def user_logout(request):
 
     return HttpResponseRedirect('/rango/')
 
-def search(request):
-    context = RequestContext(request)
-    cat_list = get_category_list()
-    result_list = []
-
-    if request.method == 'POST':
-        query = request.POST['query'].strip()
-
-        if query:
-            result_list = run_query(query)
-
-    return render_to_response('rango/search.html',
-                              {'result_list': result_list,
-                               'cat_list': cat_list},
-                              context,)
+# def search(request):
+#     context = RequestContext(request)
+#     cat_list = get_category_list()
+#     result_list = []
+#
+#     if request.method == 'POST':
+#         query = request.POST['query'].strip()
+#
+#         if query:
+#             result_list = run_query(query)
+#
+#     return render_to_response('rango/search.html',
+#                               {'result_list': result_list,
+#                                'cat_list': cat_list},
+#                               context,)
