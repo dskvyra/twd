@@ -1,5 +1,5 @@
 from django.template import  RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from rango.models import Category, Page, UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
@@ -98,13 +98,13 @@ def category(request, category_name_url):
     try:
         # category = Category.objects.get(name=category_name)
         category = Category.objects.get(name__iexact=category_name)
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
         context_dict['category'] = category
         context_dict['pages'] = pages
     except Category.DoesNotExist:
         pass
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.has_key('query'):
         query = request.POST['query'].strip()
 
         if query:
@@ -283,3 +283,21 @@ def profile(request):
 
     return render_to_response('rango/profile.html', context_dict, context)
 
+def track_url(request):
+    context = RequestContext(request)
+    page_id = None
+    url = '/rango/'
+
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views = page.views + 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)
