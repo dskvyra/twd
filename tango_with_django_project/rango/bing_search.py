@@ -60,6 +60,7 @@ def main():
         results = run_query(query)
     else:
         print "You should use correct query"
+        return
 
     ranked_results = zip(xrange(1, len(results) + 1), results)
 
