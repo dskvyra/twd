@@ -5,8 +5,13 @@
 {% block title %}About Rango{% endblock %}
 
 {% block body_block %}
-        <h1>Rango is...</h1>
-        hello world! <strong>{{ boldmessage }}</strong><br />
-        <p>You have attended Rango's mainpage {{ visits }} times</p>
-        <img src="{% static "about_rango.jpg" %}" alt="Rango's happy face">
+<div class="hero-unit">
+    <h1>About Rango</h1>
+    <p>This is <strong>Rango's about page</strong>.<br />
+
+    You've visited the site on <strong>{{ visits }} occasion(s)</strong>.<br />
+
+    Here's a picture of Rango!<br /></p>
+    <img src="{% static 'rango.jpg' %}" alt="Picture of Rango" />
+</div>
 {% endblock %}
