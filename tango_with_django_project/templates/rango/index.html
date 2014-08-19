@@ -12,9 +12,9 @@
 <div class="row-fluid">
     <div class="span6">
         <h2>Top Five Categories</h2>
-        {% if categories %}
+        {% if categories_top %}
         <ul>
-            {% for category in categories %}
+            {% for category in categories_top %}
             <li><a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
             {% endfor %}
         </ul>
@@ -26,9 +26,9 @@
     <!--/span-->
     <div class="span6">
         <h2>Top Five Pages</h2>
-        {% if pages %}
+        {% if pages_top %}
         <ul>
-            {% for page in pages %}
+            {% for page in pages_top %}
             <li><a href="{{ page.url}}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view(s))</li>
             {% endfor %}
         </ul>

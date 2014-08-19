@@ -18,15 +18,25 @@ def encode_url(title):
     """ Takes title string, swaps spaces by underlines and returns url string """
     return title.replace(' ', '_')
 
+def get_category_list():
+    cat_list = Category.objects.all()
+
+    for category in cat_list:
+        category.url = encode_url(category.name)
+
+    return cat_list
+
 def index(request):
     context = RequestContext(request)
-    category_list = Category.objects.order_by('-likes')[:TOP_AMOUNT]
+    category_top_list = Category.objects.order_by('-likes')[:TOP_AMOUNT]
+    cat_list = get_category_list()
     page_top_list = Page.objects.order_by('-views')[:TOP_AMOUNT]
-    context_dict = {'categories': category_list,
-                    'pages': page_top_list,
+    context_dict = {'categories_top': category_top_list,
+                    'cat_list': cat_list,
+                    'pages_top': page_top_list,
                     }
 
-    for category in category_list:
+    for category in category_top_list:
         category.url = encode_url(category.name)
 
     if request.session.get('last_visit'):
@@ -62,7 +72,10 @@ def index(request):
 
 def about(request):
     context = RequestContext(request)
-    context_dict = {'boldmessage': 'Hello, I\'m Rango and I\'m green'}
+    cat_list = get_category_list()
+
+    context_dict = {'boldmessage': 'Hello, I\'m Rango and I\'m green',
+                    'cat_list': cat_list,}
 
     if request.session.has_key('visits'):
         visits_count = request.session['visits']
@@ -76,9 +89,10 @@ def about(request):
 def category(request, category_name_url):
     context = RequestContext(request)
     category_name = decode_url(category_name_url)
+    cat_list = get_category_list()
     context_dict = {'category_name': category_name,
                     'category_name_url': category_name_url,
-                    }
+                    'cat_list': cat_list,}
 
     try:
         category = Category.objects.get(name=category_name)
@@ -93,6 +107,7 @@ def category(request, category_name_url):
 @login_required
 def add_category(request):
     context = RequestContext(request)
+    cat_list = get_category_list()
 
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -106,13 +121,14 @@ def add_category(request):
     else:
         form = CategoryForm()
 
-    return render_to_response('rango/add_category.html', {'form': form}, context)
+    return render_to_response('rango/add_category.html', {'form': form, 'cat_list': cat_list}, context)
 
 @login_required
 def add_page(request, category_name_url):
     context = RequestContext(request)
-
+    cat_list = get_category_list()
     category_name = decode_url(category_name_url)
+
     if request.method == 'POST':
         form = PageForm(request.POST)
 
@@ -123,7 +139,7 @@ def add_page(request, category_name_url):
                 cat = Category.objects.get(name=category_name)
                 page.category = cat
             except Category.DoesNotExist:
-                return render_to_response('rango/add_category.html', {}, context)
+                return render_to_response('rango/add_category.html', {'cat_list': cat_list}, context)
 
             page.views = 0
 
@@ -138,11 +154,13 @@ def add_page(request, category_name_url):
     return render_to_response('rango/add_page.html',
             {'category_name_url': category_name_url,
              'category_name': category_name,
-             'form': form,},
+             'form': form,
+             'cat_list': cat_list},
             context)
 
 def register(request):
     context = RequestContext(request)
+    cat_list = get_category_list()
 
     registered = False
 
@@ -176,12 +194,14 @@ def register(request):
         'rango/register.html',
         {'user_form': user_form,
          'profile_form': profile_form,
-         'registered': registered,},
+         'registered': registered,
+         'cat_list': cat_list},
         context
     )
 
 def user_login(request):
     context = RequestContext(request)
+    cat_list = get_category_list()
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -199,17 +219,19 @@ def user_login(request):
             print 'Invalid login details: {0}, {1}'.format(username, password)
             return HttpResponse('Invalid login details supplied.')
     else:
-        return render_to_response('rango/login.html', {}, context)
+        return render_to_response('rango/login.html', {'cat_list': cat_list}, context)
 
 @login_required
 def restricted(request):
     context = RequestContext(request)
+    cat_list = get_category_list()
 
     message = "Since you're logged in, you can see this text!"
 
     return render_to_response(
         'rango/restricted.html',
-        {'message': message},
+        {'message': message,
+         'cat_list': cat_list},
         context
     )
 
@@ -221,6 +243,7 @@ def user_logout(request):
 
 def search(request):
     context = RequestContext(request)
+    cat_list = get_category_list()
     result_list = []
 
     if request.method == 'POST':
@@ -229,4 +252,7 @@ def search(request):
         if query:
             result_list = run_query(query)
 
-    return render_to_response('rango/search.html', {'result_list': result_list}, context)
+    return render_to_response('rango/search.html',
+                              {'result_list': result_list,
+                               'cat_list': cat_list},
+                              context,)
