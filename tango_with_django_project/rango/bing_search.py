@@ -36,7 +36,6 @@ def run_query(search_terms):
         response = urllib2.urlopen(search_url)
 
         json_response = json.load(response)
-        #
         # import ipdb
         # ipdb.set_trace()
 
@@ -62,7 +61,11 @@ def main():
         print "You should use correct query"
         return
 
-    ranked_results = zip(xrange(1, len(results) + 1), results)
+    ranked_results = [(rank + 1, result) for (rank, result) in enumerate(results)]
+    # ranked_results = zip(xrange(1, len(results) + 1), results)
+
+    # import ipdb
+    # ipdb.set_trace()
 
     for rank, result in ranked_results:
         out = '#{} : {}\ntitle: {}\n'.format(rank, result['link'], result['title'])
