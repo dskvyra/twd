@@ -1,12 +1,13 @@
 from django.template import  RequestContext
 from django.shortcuts import render_to_response
-from rango.models import Category, Page
+from rango.models import Category, Page, UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from rango.bing_search import run_query
+from django.contrib.auth.models import User
 
 TOP_AMOUNT = 5
 
@@ -264,3 +265,21 @@ def user_logout(request):
 #                               {'result_list': result_list,
 #                                'cat_list': cat_list},
 #                               context,)
+
+@login_required
+def profile(request):
+    context = RequestContext(request)
+    cat_list = get_category_list()
+    context_dict = {'cat_list': cat_list}
+    user = User.objects.get(username=request.user)
+
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+    except:
+        user_profile = None
+
+    context_dict['user'] = user
+    context_dict['user_profile'] = user_profile
+
+    return render_to_response('rango/profile.html', context_dict, context)
+
