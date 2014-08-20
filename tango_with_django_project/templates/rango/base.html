@@ -54,12 +54,18 @@
             <div class="well sidebar-nav">
                 {% block sidebar %}
                 {% endblock %}
-                <div id="cats">
-                   {% if cat_list %}
-                       <ul class="nav nav-list"><li>Category List</li></ul>
-                       {% include 'rango/category_list.html' with cat_list=cat_list %}
-                   {% endif %}
-                </div>
+                <ul class="nav nav-list"><li>Category List</li>
+                    <li class="nav-header">Find Category</li>
+                    <form>
+                        <lable></lable>
+                        <li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion"/></li>
+                    </form>
+                </ul>
+                {% if cat_list %}
+                    <div id="cats">
+                        {% include 'rango/category_list.html' with cat_list=cat_list %}
+                    </div>
+                {% endif %}
             </div>
             <!--/.well -->
         </div>

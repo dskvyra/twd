@@ -19,11 +19,20 @@ def encode_url(title):
     """ Takes title string, swaps spaces by underlines and returns url string """
     return title.replace(' ', '_')
 
-def get_category_list():
-    cat_list = Category.objects.all()
+def get_category_list(max_result=0, starts_with=''):
+    cat_list = []
 
-    for category in cat_list:
-        category.url = encode_url(category.name)
+    if starts_with:
+        cat_list = Category.objects.filter(name__istartswith=starts_with)
+    else:
+        cat_list = Category.objects.all()
+
+    if max_result > 0:
+        if len(cat_list) > max_result:
+            cat_list = cat_list[:max_result]
+
+    for cat in cat_list:
+        cat.url = encode_url(cat.name)
 
     return cat_list
 
@@ -321,3 +330,14 @@ def like_category(request):
             category.save()
 
     return HttpResponse(likes)
+
+def suggest_category(request):
+    context = RequestContext(request)
+    start_with =''
+
+    if request.method == 'GET':
+        start_with = request.GET['suggestion']
+
+    cat_list = get_category_list(8, start_with)
+
+    return render_to_response('rango/category_list.html', {'cat_list': cat_list}, context)
