@@ -155,11 +155,13 @@ def add_page(request, category_name_url):
 
             try:
                 cat = Category.objects.get(name=category_name)
-                page.category = cat
+                # page.category = cat
+                page = Page.objects.get_or_create(category=cat, title=page.title, url=page.url)[0]
             except Category.DoesNotExist:
                 return render_to_response('rango/add_category.html', {'cat_list': cat_list}, context)
 
-            page.views = 0
+            if not page.views:
+                page.views = 0
 
             page.save()
 

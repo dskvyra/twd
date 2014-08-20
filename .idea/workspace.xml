@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87dbb94f-5005-4441-8783-4a61ff8556ca" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tango_with_django_project/templates/rango/page_list.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tango_with_django_project/static/js/bootstrap-fluid-adj.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/rango.db" afterPath="$PROJECT_DIR$/tango_with_django_project/rango.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" afterPath="$PROJECT_DIR$/tango_with_django_project/templates/rango/category.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/static/js/rango-ajax.js" afterPath="$PROJECT_DIR$/tango_with_django_project/static/js/rango-ajax.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/rango/urls.py" afterPath="$PROJECT_DIR$/tango_with_django_project/rango/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tango_with_django_project/rango/views.py" afterPath="$PROJECT_DIR$/tango_with_django_project/rango/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="twd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +29,8 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tango_with_django_project/rango/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37091318" vertical-offset="2335" max-vertical-offset="6516">
-              <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.45208567" vertical-offset="2371" max-vertical-offset="6552">
+              <caret line="163" column="30" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -922,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tango_with_django_project/rango/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37091318" vertical-offset="2335" max-vertical-offset="6516">
-          <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.45208567" vertical-offset="2371" max-vertical-offset="6552">
+          <caret line="163" column="30" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
           <folding />
         </state>
       </provider>
