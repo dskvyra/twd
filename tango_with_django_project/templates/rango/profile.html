@@ -11,7 +11,7 @@
     {% if user_profile %}
         <p>Website: <a href="{{ user_profile.website }}">{{ user_profile.website }}</a></p>
         <br/>
-        {% if userprofile.picture %}
+        {% if user_profile.picture %}
             <img src="{{ user_profile.picture.url }}"  />
         {% endif %}
     {% endif %}
