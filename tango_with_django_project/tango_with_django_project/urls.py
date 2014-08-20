@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url('^rango/', include('rango.urls')),
-    url('^$', include('rango.git adurls')),
+    url('^$', include('rango.urls')),
     # Examples:
     # url(r'^$', 'tango_with_django_project.views.home', name='home'),
     # url(r'^tango_with_django_project/', include('tango_with_django_project.foo.urls')),
