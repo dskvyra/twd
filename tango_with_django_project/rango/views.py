@@ -5,6 +5,7 @@ from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 TOP_AMOUNT = 5
 
@@ -19,15 +20,29 @@ def encode_url(title):
 def index(request):
     context = RequestContext(request)
     category_list = Category.objects.order_by('-likes')[:TOP_AMOUNT]
-    page_top3_list = Page.objects.order_by('-views')[:TOP_AMOUNT]
+    page_top_list = Page.objects.order_by('-views')[:TOP_AMOUNT]
     context_dict = {'categories': category_list,
-                    'pages': page_top3_list,
+                    'pages': page_top_list,
                     }
 
     for category in category_list:
         category.url = encode_url(category.name)
 
-    return render_to_response('rango/index.html', context_dict, context)
+    response = render_to_response('rango/index.html', context_dict, context)
+
+    visits = int(request.COOKIES.get('visits', '0'))
+
+    if 'last_visit' in request.COOKIES:
+        last_visit = request.COOKIES['last_visit']
+        last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+
+        if (datetime.now() - last_visit_time).days > 0:
+            response.set_cookie('visits', visits+1)
+            response.set_cookie('last_visit', datetime.now())
+    else:
+        response.set_cookie('last_visit', datetime.now())
+
+    return response
 
 def about(request):
     context_dict = {'boldmessage': 'Hello, I\'m Rango and I\'m green'}
